@@ -1,9 +1,8 @@
-
 str='Alexander'
 tup=tuple(str)
 
 for i in tup:
-    print(tup.count(i))
+    print(i,tup.count(i))
 
 import bisect
 
