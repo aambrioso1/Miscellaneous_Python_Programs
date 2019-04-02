@@ -12,7 +12,7 @@ def ZeroOut(list,n):
 
 #Try it!
 
-list2 = ZeroOut([1,2,3,4,5,6], 2)
+list2 = ZeroOut([1,2,3,4,5,6,7,8,9,10], 3)
 print(list2)
 
 #The function creates a list from 2 to last.
