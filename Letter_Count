@@ -20,8 +20,7 @@ list=[]
 templist=[]
 charlist=[]
 
-#text = input('Please type in some text.\n')
-#print('\n')
+
 #This loop creates two lists of all the characters in the user's text.
 def Count(text):
         for i in range(len(text)):
@@ -35,11 +34,7 @@ def Count(text):
                 k=templist[0]
                 RemoveChar(k,templist)
                 charlist+=k
-
-#This loop prints out the count for each character.
-#for i in range(len(charlist)):
-#print('The number of %s\'s is %i' % (charlist[i],
         return [charlist,countlist]
 
-print(Count('aabbbcccc'))
+#print(Count('Alexander Ambrioso'))
 
