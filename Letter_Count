@@ -27,6 +27,7 @@ def Count(text):
         for i in range(len(text)):
                 list.append(text[i])
                 templist.append(text[i])
+
 #This loops removes all the repeated characters in templist and creates a list of how many of each character were in the user's text.
         charlist=[]
         while(len(templist)>0):
@@ -35,6 +36,10 @@ def Count(text):
                 RemoveChar(k,templist)
                 charlist+=k
 
+#This loop prints out the count for each character.
+#for i in range(len(charlist)):
+#print('The number of %s\'s is %i' % (charlist[i],
         return [charlist,countlist]
 
-print(Count('Alexander Ambrioso'))
+print(Count('aabbbcccc'))
+
