@@ -8,8 +8,5 @@ lens = [max(map(len, col)) for col in zip(*s)]
 
 fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
 table = [fmt.format(*row) for row in s]
-
-for i in range(3):
-    matrix[i,i**2]=-1
-
 print(matrix)
+print('\n'.join(table))
