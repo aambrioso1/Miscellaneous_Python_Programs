@@ -54,10 +54,10 @@ while(go):  #This while loop continues until the palyer does not want to play an
 
         #Now we check if the player wants to play again.
         again = input('Would you like to play again? Yes (Y) or No (N).\n\n\n')
+        #If the player does not want to play again, go is set to false so that the program exits the while loop.
         if again in ['N', 'No', 'n', 'no']:
                 go = False
-        #If we get here then the player want to play again.  So we set checked back to false
-        #so that when we go back to the top we check again if player is making a valid play.
+        #We set checked back to false so that if the player wants to play again we can check for a valid play.
         checked = False
 
 #If we get here the player has decided to stop playing.
