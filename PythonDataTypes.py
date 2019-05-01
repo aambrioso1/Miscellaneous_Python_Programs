@@ -34,7 +34,7 @@ print(type(True))
 
 
 
-#tuples
+#tuples.  Tuples are not mutable.
 #tup1 = (1,2,3)
 
 #comprehension
