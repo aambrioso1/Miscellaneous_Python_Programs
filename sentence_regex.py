@@ -1,28 +1,47 @@
 """
-This code implements a simple search for inductive and deductive sentences in text.  It uses three regular expression to find these sentences.   It works by first using a regular expression to break up the text into sentences.   Then it searches each sentence for the inductive and deductive words.   Finally it prints out the deductive sentences and the words found in each.
+This code implements a simple search for inductive and deductive sentences in text.  It uses three regular expression to find these sentences.   It works by first using a regular expression to break up the text into sentences.   Then it searches each sentence for the inductive and deductive words.   Finally it prints out the sentences, the words found in each, and whether the sentence is deductive, inductive, or neither.
 """
 
 # The program use two standard librarys the regex library and the operating system library if a text file is searched.
 import re
 import os
 
+import requests
 
-# The file Hume.txt contains the text of Hume's An Enquiry Conerning Human Understanding.
+# Downloads Hume's An Enquiry Concerning Human Understanding for in Project Gutenberg. 
+url = 'https://www.gutenberg.org/files/9662/9662.txt'
+r = requests.get(url)
+r.raise_for_status()
+text = response.text
+
+# Saves Hume's text to the hard drive
+f1 = open('C:/Users/aambrioso/PycharmProjects/CSV files/Hume.txt',"w") 
+f1.write(text) 
+f1.close() #to change 
+
+
+"""
+Use this code if text is on the hard drive.
+# The file Hume.txt contains the text of Hume's An Enquiry Concerning Human Understanding found in Project Gutenberg.
+https://www.gutenberg.org/files/9662/9662.txt
 f = open('C://Users//aambrioso//Desktop//Hume.txt')
 text = f.read()
 f.close()
-
-
-"""
-# This is the text that is searched by the program.
-text = 
-There are surely four sentences in the text.  Is this the first one or the second one?   This is definitely the third one.   This is possibly the last one!
 """
 
+# This removes space characters and extra spaces.  This is a minimal amount of cleaning.   For example there is a glossary and legal language at the end of the file that should be removed.
+text = re.sub(r'\s+',' ', text)
+text = re.sub(' +',' ', text)
+# text=text.replace('\s+',' ')
+# text=text.replace(r' +',' ')
+# text = text.replace(r'\n','')
+# " ".join(text.split())
 
+
+# The list of deductives words that the program searches for.
 deductive_words = ['Surely', 'surely', 'Certainly', 'certainly', 'Definitely', 'definitely']
 
-inductive_words = ['Maybe', 'maybe', 'Possibly', 'possibly']
+inductive_words = ['Likely', 'likely', 'Maybe', 'maybe', 'Possibly', 'possibly']
 
 d_str = '|'.join(deductive_words)
 i_str = '|'.join(inductive_words)
@@ -49,11 +68,11 @@ for s in sentences:
     d_word = d_word_pattern.findall(s)
     i_word = i_word_pattern.findall(s)
     if len(d_word) > 0:
-        infolist.append([s,d_word[0],'D'])
+        infolist.append([s,d_word[0],'Deductive'])
     elif len(i_word) > 0:
-        infolist.append([s,i_word[0],'I'])
+        infolist.append([s,i_word[0],'Inductive'])
     else:  
-        infolist.append([s, None, 'N'])
+        infolist.append([s, None, 'Neither'])
     sentence_count += 1
 
 
@@ -67,13 +86,15 @@ for i in infolist:
 
    
 # Create a dataframe with all the information    
-data = {'sentences': sentencelist, 'class':classlist, 'word': wordlist}
+data = {'SENTENCE': sentencelist, 'CLASS':classlist, 'WORD': wordlist}
 frame = pd.DataFrame(data)
-print('***************************************')
-print(frame)
-print('***************************************')
-print('The deductive sentence(s)')
-print(frame[frame['class'] == 'D'])
-print('***************************************')
-print('The inductive sentence(s)')
-print(frame[frame['class'] == 'I'])
+
+# Creates dataframe for deductive sentences and a one for inductive sentences
+dframe = frame[frame['CLASS'] == 'Deductive']
+iframe = frame[frame['CLASS'] == 'Inductive']
+
+dframe.to_csv('C:/Users/aambrioso/PycharmProjects/CSV files/d_sentences.csv')
+
+iframe.to_csv('C:/Users/aambrioso/PycharmProjects/CSV files/i_sentences.csv')
+
+frame.to_csv('C:/Users/aambrioso/PycharmProjects/CSV files/Hume_stripped.csv')
