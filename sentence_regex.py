@@ -237,11 +237,11 @@ for i in infolist:
 data = {'SENTENCE': sentencelist, 'CLASS':classlist, 'WORD': wordlist}
 frame = pd.DataFrame(data)
 
-# Creates dataframe for deductive sentences and a one for inductive sentences
+# Creates a dataframe for deductive sentences and a one for inductive sentences
 dframe = frame[frame['CLASS'] == 'Deductive']
 iframe = frame[frame['CLASS'] == 'Inductive']
 
-# We save dataframes with sentence of the cleaned text, the deductive sentence, the inductive sentences.
+# We save dataframes with sentences of the cleaned text, the deductive sentences, the inductive sentences.
 dframe.to_csv('C:/Users/aambrioso/PycharmProjects/CSV files/d_sentences.csv')
 
 iframe.to_csv('C:/Users/aambrioso/PycharmProjects/CSV files/i_sentences.csv')
