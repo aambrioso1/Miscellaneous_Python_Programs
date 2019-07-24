@@ -37,11 +37,6 @@ print(type(True))
 #tuples.  Tuples are not mutable.
 #tup1 = (1,2,3)
 
-#comprehension
-#list2 = [n**3 for n in range(10)]
-
-#print(list2)
-
 #conditionals
 #T=True
 #F=False
