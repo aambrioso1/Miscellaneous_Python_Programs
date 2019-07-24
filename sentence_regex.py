@@ -8,7 +8,7 @@ import os
 
 import requests
 
-# Downloads Hume's An Enquiry Concerning Human Understanding for in Project Gutenberg. 
+# Downloads Hume's An Enquiry Concerning Human Understanding from Project Gutenberg. 
 url = 'https://www.gutenberg.org/files/9662/9662.txt'
 r = requests.get(url)
 r.raise_for_status()
